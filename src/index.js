@@ -1,11 +1,8 @@
-'use strict';
-
-const PluginError = require('plugin-error');
-const through = require('through2');
-const {formatters, lint} = require('stylelint');
-
-const applySourcemap = require('./apply-sourcemap');
-const reporterFactory = require('./reporter-factory');
+import PluginError from "plugin-error";
+import through from "through2";
+import {formatters, lint} from "stylelint";
+import applySourcemap from "./apply-sourcemap";
+import reporterFactory from "./reporter-factory";
 
 /**
  * Name of this plugin for reporting purposes.
@@ -22,15 +19,14 @@ const pluginName = 'gulp-stylelint';
  * @param {Boolean} [options.debug] - If true, error stack will be printed.
  * @return {Stream} Object stream usable in Gulp pipes.
  */
-module.exports = function gulpStylelint(options) {
+export default function gulpStylelint(options) {
 
   /**
    * Plugin options with defaults applied.
    * @type Object
    */
   const pluginOptions = Object.assign({
-    failAfterError: true,
-    debug: false
+    failAfterError: true, debug: false
   }, options);
 
   /**
@@ -89,18 +85,13 @@ module.exports = function gulpStylelint(options) {
     }
 
     const localLintOptions = Object.assign({}, lintOptions, {
-      code: file.contents.toString(),
-      codeFilename: file.path
+      code: file.contents.toString(), codeFilename: file.path
     });
 
     const lintPromise = lint(localLintOptions)
-      .then(lintResult =>
-        // Checking for the presence of sourceMap.mappings
+      .then(lintResult => // Checking for the presence of sourceMap.mappings
         // in case sourcemaps are initialized, but still empty:
-        file.sourceMap && file.sourceMap.mappings ?
-          applySourcemap(lintResult, file.sourceMap) :
-          lintResult
-      )
+        file.sourceMap && file.sourceMap.mappings ? applySourcemap(lintResult, file.sourceMap) : lintResult)
       .then(lintResult => {
         if (lintOptions.fix && lintResult.output) {
           file.contents = Buffer.from(lintResult.output);
@@ -176,7 +167,7 @@ module.exports = function gulpStylelint(options) {
   }
 
   return through.obj(onFile, onStreamEnd).resume();
-};
+}
 
 /**
  * Formatters bundled with stylelint by default.
@@ -187,4 +178,6 @@ module.exports = function gulpStylelint(options) {
  * @see https://github.com/olegskl/gulp-stylelint/issues/3#issuecomment-197025044
  * @type {Object}
  */
-module.exports.formatters = formatters;
+export {
+  formatters
+}

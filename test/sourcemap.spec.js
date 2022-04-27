@@ -1,14 +1,16 @@
-'use strict';
+import gulpStylelint from "../src/index";
+import test from "tape";
+import gulpSourcemaps from "gulp-sourcemaps";
+import path, {dirname} from "path";
+import gulp from "gulp";
+import gulpCleanCss from "gulp-clean-css";
+import gulpConcat from "gulp-concat";
+import gulpRename from "gulp-rename";
 
-const gulp = require('gulp');
-const gulpCleanCss = require('gulp-clean-css');
-const gulpConcat = require('gulp-concat');
-const gulpRename = require('gulp-rename');
-const gulpSourcemaps = require('gulp-sourcemaps');
-const path = require('path');
-const test = require('tape');
+import {fileURLToPath} from 'url';
 
-const gulpStylelint = require('../src/index');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 /**
  * Creates a full path to the fixtures glob.
@@ -39,9 +41,11 @@ test('should apply sourcemaps correctly', t => {
     .pipe(gulpConcat('concatenated.css'))
     .pipe(gulpRename({prefix: 'renamed-'}))
     .pipe(gulpStylelint({
-      config: {rules: {
-        'declaration-no-important': true
-      }},
+      config: {
+        rules: {
+          'declaration-no-important': true
+        }
+      },
       reporters: [{
         formatter(lintResult) {
           t.deepEqual(
@@ -81,9 +85,11 @@ test('should ignore empty sourcemaps', t => {
     .src(fixtures('original-*.css'))
     .pipe(gulpSourcemaps.init()) // empty sourcemaps here
     .pipe(gulpStylelint({
-      config: {rules: {
-        'declaration-no-important': true
-      }},
+      config: {
+        rules: {
+          'declaration-no-important': true
+        }
+      },
       reporters: [{
         formatter(lintResult) {
           t.deepEqual(

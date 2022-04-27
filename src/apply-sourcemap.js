@@ -1,6 +1,5 @@
-'use strict';
+import {SourceMapConsumer} from "source-map";
 
-const {SourceMapConsumer} = require('source-map');
 
 /**
  * Applies a sourcemap to Stylelint result.
@@ -9,7 +8,7 @@ const {SourceMapConsumer} = require('source-map');
  * @param {Object} sourceMap - Sourcemap object.
  * @return {Object} Rewritten Stylelint result.
  */
-module.exports = async function applySourcemap(lintResult, sourceMap) {
+export default async function applySourcemap(lintResult, sourceMap) {
   const sourceMapConsumer = await new SourceMapConsumer(sourceMap);
 
   lintResult.results = lintResult.results.reduce((memo, result) => {

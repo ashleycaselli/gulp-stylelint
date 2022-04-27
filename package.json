@@ -1,5 +1,6 @@
 {
   "name": "gulp-stylelint",
+  "type": "module",
   "version": "13.0.0",
   "description": "Gulp plugin for running Stylelint results through various reporters.",
   "main": "src/index.js",
@@ -29,7 +30,7 @@
   },
   "homepage": "https://github.com/olegskl/gulp-stylelint",
   "engines": {
-    "node": ">=10.12.0"
+    "node": ">=14.16"
   },
   "peerDependencies": {
     "stylelint": "^13.0.0"

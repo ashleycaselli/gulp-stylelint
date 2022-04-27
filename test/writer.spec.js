@@ -1,12 +1,9 @@
-'use strict';
-
-const chalk = require('chalk');
-const fs = require('fs');
-const path = require('path');
-const test = require('tape');
-const {stub} = require('sinon');
-
-const writer = require('../src/writer');
+import chalk from 'chalk';
+import fs from "fs";
+import path from "path";
+import test from "tape";
+import {stub} from "sinon";
+import writer from "../src/writer";
 
 const tmpDir = path.resolve(__dirname, '../tmp');
 
@@ -18,15 +15,8 @@ test('writer should write to cwd if base dir is not specified', t => {
 
   writer('footext', 'foo.txt')
     .then(() => {
-      t.true(
-        fs.statSync(reportFilePath).isFile(),
-        'report file has been created in the current working directory'
-      );
-      t.equal(
-        fs.readFileSync(reportFilePath, 'utf8'),
-        'footext',
-        'report file has correct contents'
-      );
+      t.true(fs.statSync(reportFilePath).isFile(), 'report file has been created in the current working directory');
+      t.equal(fs.readFileSync(reportFilePath, 'utf8'), 'footext', 'report file has correct contents');
     })
     .catch(e => t.fail(`failed to create report file: ${e.message}`))
     .then(() => {
@@ -45,15 +35,8 @@ test('writer should write to a base folder if it is specified', t => {
 
   writer('footext', 'foo.txt', 'foodir/subdir')
     .then(() => {
-      t.true(
-        fs.statSync(reportFilePath).isFile(),
-        'report file has been created in the specified base folder'
-      );
-      t.equal(
-        fs.readFileSync(reportFilePath, 'utf8'),
-        'footext',
-        'report file has correct contents'
-      );
+      t.true(fs.statSync(reportFilePath).isFile(), 'report file has been created in the specified base folder');
+      t.equal(fs.readFileSync(reportFilePath, 'utf8'), 'footext', 'report file has correct contents');
     })
     .catch(e => t.fail(`failed to create report file: ${e.message}`))
     .then(() => {
@@ -72,11 +55,7 @@ test('writer should strip chalk colors from formatted output', t => {
 
   writer(chalk.blue('footext'), 'foo.txt')
     .then(() => {
-      t.equal(
-        fs.readFileSync(reportFilePath, 'utf8'),
-        'footext',
-        'chalk colors have been stripped in report file'
-      );
+      t.equal(fs.readFileSync(reportFilePath, 'utf8'), 'footext', 'chalk colors have been stripped in report file');
     })
     .catch(e => t.fail(`failed to create report file: ${e.message}`))
     .then(() => {

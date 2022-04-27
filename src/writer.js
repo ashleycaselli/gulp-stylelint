@@ -1,8 +1,6 @@
-'use strict';
-
-const fs = require('fs');
-const path = require('path');
-const stripAnsi = require('strip-ansi');
+import fs from "fs";
+import path from "path";
+import stripAnsi from "strip-ansi";
 
 /**
  * Creates the output folder and writes formatted text to a file.
@@ -11,11 +9,11 @@ const stripAnsi = require('strip-ansi');
  * @param {String} [destRoot] - Destination root folder, defaults to cwd.
  * @return {Promise} Resolved when folder is created and file is written.
  */
-module.exports = function writer(text, dest, destRoot = process.cwd()) {
+export default function writer(text, dest, destRoot = process.cwd()) {
   const fullpath = path.resolve(destRoot, dest);
 
   return new Promise((resolve, reject) => {
-    fs.mkdir(path.dirname(fullpath), { recursive: true }, mkdirpError => {
+    fs.mkdir(path.dirname(fullpath), {recursive: true}, mkdirpError => {
       if (mkdirpError) {
         reject(mkdirpError);
       } else {
@@ -29,4 +27,4 @@ module.exports = function writer(text, dest, destRoot = process.cwd()) {
       }
     });
   });
-};
+}

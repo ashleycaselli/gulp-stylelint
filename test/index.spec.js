@@ -1,12 +1,14 @@
-'use strict';
+import fs from "fs";
+import gulp from "gulp";
+import gulpSourcemaps from "gulp-sourcemaps";
+import path, { dirname } from "path";
+import test from "tape";
+import gulpStylelint from "../src/index";
 
-const fs = require('fs');
-const gulp = require('gulp');
-const gulpSourcemaps = require('gulp-sourcemaps');
-const path = require('path');
-const test = require('tape');
+import { fileURLToPath } from 'url';
 
-const gulpStylelint = require('../src/index');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 /**
  * Creates a full path to the fixtures glob.
@@ -47,9 +49,13 @@ test('should emit an error when linter complains', t => {
   t.plan(1);
   gulp
     .src(fixtures('invalid.css'))
-    .pipe(gulpStylelint({config: {rules: {
-      'color-hex-case': 'lower'
-    }}}))
+    .pipe(gulpStylelint({
+      config: {
+        rules: {
+          'color-hex-case': 'lower'
+        }
+      }
+    }))
     .on('error', () => t.pass('error has been emitted correctly'));
 });
 
