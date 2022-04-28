@@ -1,10 +1,14 @@
 import chalk from 'chalk';
 import fs from "fs";
-import path from "path";
+import { path, dirname } from "path";
 import test from "tape";
 import {stub} from "sinon";
 import writer from "../src/writer";
 
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const tmpDir = path.resolve(__dirname, '../tmp');
 
 test('writer should write to cwd if base dir is not specified', t => {
