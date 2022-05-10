@@ -1,9 +1,6 @@
-'use strict';
-
-const fancyLog = require('fancy-log');
-const {formatters} = require('stylelint');
-
-const writer = require('./writer');
+import fancyLog from "fancy-log";
+import {formatters} from "stylelint";
+import writer from "./writer";
 
 /**
  * Creates a reporter from the given config.
@@ -11,7 +8,7 @@ const writer = require('./writer');
  * @param {Object} [options] - Plugin options.
  * @return {Function} Reporter.
  */
-module.exports = function reporterFactory(config = {}, options = {}) {
+export default function reporterFactory(config = {}, options = {}) {
 
   /**
    * Formatter for stylelint results.
@@ -58,4 +55,4 @@ module.exports = function reporterFactory(config = {}, options = {}) {
 
     return Promise.all(asyncTasks);
   };
-};
+}
