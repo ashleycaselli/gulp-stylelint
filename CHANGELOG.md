@@ -1,3 +1,10 @@
+### [13.0.2](https://github.com/ashleycaselli/gulp-stylelint/compare/13.0.1...13.0.2) (2022-05-16)
+
+
+### Bug Fixes
+
+* update package name ([4bb4344](https://github.com/ashleycaselli/gulp-stylelint/commit/4bb43444394923eb18c489f94e0aa0d7dbd1622c))
+
 ### [13.0.1](https://github.com/ashleycaselli/gulp-stylelint/compare/v13.0.0...13.0.1) (2022-05-16)
 
 
