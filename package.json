@@ -1,6 +1,6 @@
 {
-  "name": "gulp-stylelint",
-  "version": "13.0.0",
+  "name": "@ashleycaselli/gulp-private",
+  "version": "0.0.0-semantic-release",
   "description": "Gulp plugin for running Stylelint results through various reporters.",
   "main": "src/index.js",
   "files": [
@@ -12,9 +12,12 @@
     "test": "npm run lint && npm run tape",
     "prepublishOnly": "npm test"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/olegskl/gulp-stylelint.git"
+    "url": "https://github.com/ashleycaselli/gulp-stylelint.git"
   },
   "keywords": [
     "gulpplugin",
@@ -25,9 +28,9 @@
   "author": "Oleg Sklyanchuk <sklyanchuk@gmail.com> (http://olegskl.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/olegskl/gulp-stylelint/issues"
+    "url": "https://github.com/ashleycaselli/gulp-stylelint/issues"
   },
-  "homepage": "https://github.com/olegskl/gulp-stylelint",
+  "homepage": "https://github.com/ashleycaselli/gulp-stylelint",
   "engines": {
     "node": ">=14.18.1"
   },
@@ -42,6 +45,7 @@
     "strip-ansi": "^6.0.0"
   },
   "devDependencies": {
+    "semantic-release-preconfigured-conventional-commits": "1.1.6",
     "eslint": "7.32.0",
     "eslint-config-stylelint": "11.1.0",
     "gulp": "4.0.2",
