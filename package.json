@@ -1,5 +1,5 @@
 {
-  "name": "@ashleycaselli/gulp-private",
+  "name": "@ashleycaselli/gulp-stylelint",
   "version": "0.0.0-semantic-release",
   "description": "Gulp plugin for running Stylelint results through various reporters.",
   "main": "src/index.js",
