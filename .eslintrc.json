@@ -1,4 +1,9 @@
 {
+  "settings": {
+    "jest": {
+      "version": 27
+    }
+  },
   "extends": [
     "stylelint"
   ],
