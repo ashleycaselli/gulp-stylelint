@@ -22,10 +22,10 @@ module.exports = async function applySourcemap(lintResult, sourceMap) {
         warning.column = origPos.column;
 
         if (sameSourceResultIndex === -1) {
-          memo.push(Object.assign({}, result, {
+          memo.push({ ...result,
             source: origPos.source,
             warnings: [warning]
-          }));
+          });
         } else {
           memo[sameSourceResultIndex].warnings.push(warning);
         }

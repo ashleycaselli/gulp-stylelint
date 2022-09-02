@@ -28,16 +28,16 @@ module.exports = function gulpStylelint(options) {
    * Plugin options with defaults applied.
    * @type Object
    */
-  const pluginOptions = Object.assign({
+  const pluginOptions = ({...options,
     failAfterError: true,
     debug: false
-  }, options);
+  });
 
   /**
    * Lint options for stylelint's `lint` function.
    * @type Object
    */
-  const lintOptions = Object.assign({}, options);
+  const lintOptions = ({ ...options });
 
   /**
    * List of gulp-stylelint reporters.
@@ -88,18 +88,18 @@ module.exports = function gulpStylelint(options) {
       return;
     }
 
-    const localLintOptions = Object.assign({}, lintOptions, {
+    const localLintOptions = ({ ...lintOptions,
       code: file.contents.toString(),
       codeFilename: file.path
     });
 
     const lintPromise = lint(localLintOptions)
-      .then(lintResult =>
+      .then(lintResult => {
         // Checking for the presence of sourceMap.mappings
         // in case sourcemaps are initialized, but still empty:
         file.sourceMap && file.sourceMap.mappings ?
           applySourcemap(lintResult, file.sourceMap) :
-          lintResult
+          lintResult }
       )
       .then(lintResult => {
         if (lintOptions.fix && lintResult.output) {

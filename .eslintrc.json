@@ -1,8 +1,13 @@
 {
+  "settings": {
+    "jest": {
+      "version": 27
+    }
+  },
   "extends": [
     "stylelint"
   ],
   "parserOptions": {
-    "ecmaVersion": 2017
+    "ecmaVersion": 2018
   }
 }
