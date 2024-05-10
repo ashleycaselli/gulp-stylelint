@@ -39,7 +39,7 @@
     "fancy-log": "^2.0.0",
     "plugin-error": "^2.0.0",
     "source-map": "^0.7.3",
-    "strip-ansi": "^6.0.0"
+    "strip-ansi": "^7.0.0"
   },
   "devDependencies": {
     "eslint": "8.57.0",
