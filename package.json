@@ -45,7 +45,7 @@
     "strip-ansi": "^6.0.0"
   },
   "devDependencies": {
-    "semantic-release-preconfigured-conventional-commits": "1.1.6",
+    "semantic-release-preconfigured-conventional-commits": "1.1.111",
     "eslint": "7.32.0",
     "eslint-config-stylelint": "11.1.0",
     "gulp": "4.0.2",
